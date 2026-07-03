@@ -14,7 +14,8 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
 %   - figTitle - Figure title string; nan means no title (default nan).
 %   - views (cell) - Views as named string labels or 1x2 [az, el] numeric pairs (default {'left','front','top'}).
 %   - backgroundClr - Background and axes fill color (default 'w').
-%   - objectsClr - Axes, tick, and label color (default 'k').
+%   - brainClr - Brain envelope color (default 'k').
+%   - axesClr - Axes, tick, and label color (default 'k').
 %   - alphaTemplate (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms, e.g. front->anterior (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
@@ -30,7 +31,8 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
         opts.figTitle = nan
         opts.views (1,:) cell = {'left', 'front', 'top'}
         opts.backgroundClr = 'w'
-        opts.objectsClr = 'k'
+        opts.brainClr = 'k'
+        opts.axesClr = 'k'
         opts.alphaTemplate (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
@@ -53,7 +55,7 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
     % -- iterate over views
     for v = 1:nViews
         nexttile
-        plot(shp, 'FaceColor', opts.objectsClr, 'FaceAlpha', opts.alphaTemplate, 'EdgeColor', 'none')
+        plot(shp, 'FaceColor', opts.brainClr, 'FaceAlpha', opts.alphaTemplate, 'EdgeColor', 'none')
         ax = gca;
         hold(ax, 'on')
 
@@ -73,8 +75,8 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
         yticks(ax, [-50, 0, 50])
         zticks(ax, [-50, 0, 50])
         grid(ax, 'off')
-        set(ax, 'Color', opts.backgroundClr, 'XColor', opts.objectsClr, ...
-            'YColor', opts.objectsClr, 'ZColor', opts.objectsClr);
+        set(ax, 'Color', opts.backgroundClr, 'XColor', opts.axesClr, ...
+            'YColor', opts.axesClr, 'ZColor', opts.axesClr);
         set(ax, 'TickDir', 'out', 'TickLength', [0.02, 0.02]);
         disableDefaultInteractivity(ax);
         ax.Toolbar.Visible = 'off';
@@ -85,7 +87,7 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
             if opts.mapViewLabels
                 displayLabel = applyLabelMap(label);
             end
-            title(ax, displayLabel, 'Color', opts.objectsClr)
+            title(ax, displayLabel, 'Color', opts.axesClr)
         end
 
         % add anatomical direction corner labels for named views only
@@ -93,8 +95,8 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
             axLims = [ax.XLim; ax.YLim; ax.ZLim];
             [text1, text2, p1, p2] = getDirectionLabels(label, axLims, offset_text, opts.mapViewLabels);
             if ~isempty(text1)
-                text(ax, p1(1), p1(2), p1(3), text1, 'Color', opts.objectsClr)
-                text(ax, p2(1), p2(2), p2(3), text2, 'Color', opts.objectsClr)
+                text(ax, p1(1), p1(2), p1(3), text1, 'Color', opts.axesClr)
+                text(ax, p2(1), p2(2), p2(3), text2, 'Color', opts.axesClr)
             end
         end
 
@@ -113,7 +115,7 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
         % workaround for tiledlayout title centering
         anot = annotation('textbox', [0.5 0.85 0.1 0.1], 'String', opts.figTitle, ...
             'FitBoxToText', 'on', 'EdgeColor', 'none');
-        anot.Color = opts.objectsClr;
+        anot.Color = opts.axesClr;
         anot.FontName = tLayout.Title.FontName;
         anot.FontSize = tLayout.Title.FontSize;
         anot.UserData = 'CustomTitle';

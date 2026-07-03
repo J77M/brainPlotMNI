@@ -19,7 +19,8 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
 %   - alpha (double) - ROI face transparency 0-1 (default 0.75).
 %   - views (cell) - Views as named string labels or 1x2 [az, el] pairs (default {'left','front','top'}).
 %   - backgroundClr - Background color (default 'w').
-%   - objectsClr - Axes and label color (default 'k').
+%   - brainClr - Brain envelope color (default 'k').
+%   - axesClr - Axes and label color (default 'k').
 %   - alphaTemplate (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view after plotting (default false).
@@ -40,7 +41,8 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
         opts.alpha (1,1) double = 0.75
         opts.views (1,:) cell = {'left', 'front', 'top'}
         opts.backgroundClr = 'w'
-        opts.objectsClr = 'k'
+        opts.brainClr = 'k'
+        opts.axesClr = 'k'
         opts.alphaTemplate (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
@@ -57,7 +59,8 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
         'figTitle', opts.figTitle, ...
         'views', opts.views, ...
         'backgroundClr', opts.backgroundClr, ...
-        'objectsClr', opts.objectsClr, ...
+        'brainClr', opts.brainClr, ...
+        'axesClr', opts.axesClr, ...
         'alphaTemplate', opts.alphaTemplate, ...
         'mapViewLabels', opts.mapViewLabels, ...
         'camlight', opts.camlight);
