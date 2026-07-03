@@ -1,31 +1,35 @@
-function [channelsLabels, channelsApproxDist, channelProbsLabels, channelProbs] = MNI2Atlas(channelsMNI, atlasMNI, atlaslabels, radius_init)
+function [channelsLabels, channelsApproxDist, channelProbsLabels, channelProbs] = MNI2Atlas(channelsMNI, atlasMNI, atlaslabels, radiusInit, opts)
 % MNI2ATLAS - Maps channel MNI coordinates to atlas labels via spherical search.
-%   For each channel, grows a sphere around its MNI coordinate until it
+%   For each channel, grows a sphere from radiusInit up to maxRadius until it
 %   intersects labeled atlas voxels. The most frequent label within the
 %   sphere is assigned. Does not distinguish between white matter and
 %   undefined voxels in the atlas; use the returned distance to assess
 %   confidence (large distances may indicate white matter localization).
 % Syntax:
-%   [labels, dist] = MNI2Atlas(channelsMNI, atlasMNI, atlasLabels)
-%   [labels, dist, probLabels, probs] = MNI2Atlas(..., radius)
+%   [labels, dist] = MNI2Atlas(channelsMNI, atlasMNI, atlasLabels, radiusInit)
+%   [labels, dist, probLabels, probs] = MNI2Atlas(..., radiusInit, Name, Value)
 % Input Arguments:
 %   - channelsMNI (Nx3 double) - MNI coordinates of channels/electrodes.
 %   - atlasMNI (Mx3 double) - MNI coordinates of atlas voxels (from volume2MNI).
 %   - atlasLabels (Mx1 numeric) - Label of each atlas voxel (from volume2MNI).
-%   - radius (double) - Initial search sphere radius in mm (default: 5).
+%   - radiusInit (double) - Initial search sphere radius in mm.
+% Name-Value Options:
+%   - maxRadius (double) - Maximum search sphere radius in mm (default: 10).
 % Output Arguments:
 %   - labels (Nx1 double) - Most probable atlas label for each channel (nan if not localized).
 %   - dist (Nx1 double) - Distance in mm to nearest voxel of the assigned label.
 %   - probLabels (Nx1 cell) - Cell array of all label candidates per channel.
 %   - probs (Nx1 cell) - Cell array of label probabilities (percentage) per channel.
 
-    if nargin < 4
-        radius_init = 5;
+    arguments
+        channelsMNI (:,3) double {mustBeReal}
+        atlasMNI (:,3) double {mustBeReal}
+        atlaslabels (:,1) double
+        radiusInit (1,1) double {mustBeReal, mustBePositive}
+        opts.maxRadius (1,1) double {mustBeReal, mustBePositive} = 10
     end
 
-
-    radius_incr = 1; % mm
-    MAX_RADIUS = 15;
+    radiusIncr = 1; % [mm]
     numChannels = size(channelsMNI, 1);
 
     % allocate labels for channels
@@ -39,13 +43,10 @@ function [channelsLabels, channelsApproxDist, channelProbsLabels, channelProbs] 
     end
 
     % find label for each channel
-    for ch=1:numChannels
-        % iterate over radius 
+    for ch = 1:numChannels
         localized = false;
-        step = 0;
-        radius = radius_init;
-        while (~localized) && radius <= MAX_RADIUS
-            step = step + 1;
+        radius = radiusInit;
+        while (~localized) && radius <= opts.maxRadius
             input_MNI = channelsMNI(ch, :);
     
             % compute distances between inputcoordinate and all volume coordinates 
@@ -72,7 +73,7 @@ function [channelsLabels, channelsApproxDist, channelProbsLabels, channelProbs] 
                 most_common_label = unique_labels(max_count_index);
                 localized = true;
             else
-                radius = radius + radius_incr;
+                radius = radius + radiusIncr;
             end
         end
         

@@ -38,7 +38,8 @@ function [channelsLabels, channelsApproxDist, channelsProbs] = ...
     atlaslabels = atlaslabels(atlaslabels ~= atlasIgnore);
 
     % RUN MNI 2 ATLAS
-    [channelsLabels_, channelsApproxDist, channelProbsLabels, channelProbs] = ieeg.atlas.MNI2Atlas(channelsMNI, atlasMNI, atlaslabels, radius);
+    [channelsLabels_, channelsApproxDist, channelProbsLabels, channelProbs] = ... 
+        brainatlas.MNI2Atlas(channelsMNI, atlasMNI, atlaslabels, radius);
 
     % convert to atlas string labels
     channelsLabels = cell(size(channelsLabels_));

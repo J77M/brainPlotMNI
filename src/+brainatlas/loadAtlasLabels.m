@@ -13,7 +13,10 @@ function T_out = loadAtlasLabels(csvPath)
 %   - T (table) - Table with a single Index column (sorted), laterality-
 %     prefixed Label entries, and any additional columns preserved.
 
-    % Read table (preserve original column names)
+    arguments
+        csvPath (1,1) string {mustBeFile}
+    end
+
     T = readtable(csvPath, 'TextType', 'string');
     
     % Validate required columns
