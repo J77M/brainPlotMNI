@@ -14,13 +14,14 @@ function varargout = AREAplotConnectivity(hfig, MNIatlasVolume, atlasLabels, ROI
 %   - connectivityMatrix (MxM double) - Connectivity values; 0 or NaN entries are not drawn.
 %   - colors (1xM cell) - Sphere color for each ROI; length must match ROIsNumbers.
 % Name-Value Options:
-%   - brainSmoothness (double) - Brain envelope smoothness as a percentage (default 10).
+%   - brainSmoothness (double) - Brain envelope smoothness as a percentage (default 15).
 %   - figTitle - Figure title; nan means no title (default nan).
 %   - views (cell) - Views as named string labels or 1x2 [az, el] pairs (default {'left','front','top'}).
 %   - backgroundClr - Background color (default 'w').
 %   - objectsClr - Axes and label color (default 'k').
 %   - alphaTemplate (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms (default false).
+%   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
 %   - alpha (double) - Sphere face transparency 0-1 (default 0.5).
 %   - sphereRadius (double) - Sphere radius in mm (default 3).
 %   - lineColor - Connectivity line color (default '#0072BD').
@@ -37,13 +38,14 @@ function varargout = AREAplotConnectivity(hfig, MNIatlasVolume, atlasLabels, ROI
         ROIsNumbers
         connectivityMatrix
         colors
-        opts.brainSmoothness (1,1) double = 10
+        opts.brainSmoothness (1,1) double = 15
         opts.figTitle = nan
         opts.views (1,:) cell = {'left', 'front', 'top'}
         opts.backgroundClr = 'w'
         opts.objectsClr = 'k'
         opts.alphaTemplate (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
+        opts.camlight (1,1) logical = false
         opts.alpha (1,1) double = 0.5
         opts.sphereRadius (1,1) double = 3
         opts.lineColor = '#0072BD'
@@ -61,7 +63,8 @@ function varargout = AREAplotConnectivity(hfig, MNIatlasVolume, atlasLabels, ROI
         'backgroundClr', opts.backgroundClr, ...
         'objectsClr', opts.objectsClr, ...
         'alphaTemplate', opts.alphaTemplate, ...
-        'mapViewLabels', opts.mapViewLabels);
+        'mapViewLabels', opts.mapViewLabels, ...
+        'camlight', opts.camlight);
 
     nROIs = length(ROIsNumbers);
 

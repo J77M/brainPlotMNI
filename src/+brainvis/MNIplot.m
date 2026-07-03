@@ -12,7 +12,7 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
 %   - MNIchannelsCell (1xM cell) - Each cell contains an Nx3 matrix of MNI channel coordinates.
 %   - colors (1xM cell) - Color for each channel set; length must match MNIchannelsCell.
 % Name-Value Options:
-%   - brainSmoothness (double) - Brain envelope smoothness as a percentage (default 10).
+%   - brainSmoothness (double) - Brain envelope smoothness as a percentage (default 15).
 %   - figTitle - Figure title; nan means no title (default nan).
 %   - markerSize (double) - Marker size for channel dots, scalar or 1xM array (default 5.7).
 %   - views (cell) - Views as named string labels or 1x2 [az, el] pairs (default {'left','front','top'}).
@@ -20,6 +20,7 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
 %   - objectsClr - Axes and label color (default 'k').
 %   - alphaTemplate (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms (default false).
+%   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
 % Output Arguments:
 %   - hfig (figure handle) - The figure handle.
 %   - axs (1xN axes array) - Axes handles, one per view tile (optional).
@@ -30,7 +31,7 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
         MNIatlasVolume
         MNIchannelsCell
         colors
-        opts.brainSmoothness (1,1) double = 10
+        opts.brainSmoothness (1,1) double = 15
         opts.figTitle = nan
         opts.markerSize = 5.7
         opts.views (1,:) cell = {'left', 'front', 'top'}
@@ -38,6 +39,7 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
         opts.objectsClr = 'k'
         opts.alphaTemplate (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
+        opts.camlight (1,1) logical = false
     end
 
     assert(length(MNIchannelsCell) == length(colors), ...
@@ -58,7 +60,8 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
         'backgroundClr', opts.backgroundClr, ...
         'objectsClr', opts.objectsClr, ...
         'alphaTemplate', opts.alphaTemplate, ...
-        'mapViewLabels', opts.mapViewLabels);
+        'mapViewLabels', opts.mapViewLabels, ...
+        'camlight', opts.camlight);
 
     % -- plot channel coordinates on each view axis
     for v = 1:length(axs)

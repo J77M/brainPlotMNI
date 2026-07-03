@@ -10,13 +10,14 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
 %   - hfig (figure handle) - Target figure.
 %   - MNIatlasVolume (Nx3 double) - MNI coordinates of all atlas voxels.
 % Name-Value Options:
-%   - brainSmoothness (double) - Brain envelope smoothness as a percentage (default 10).
+%   - brainSmoothness (double) - Brain envelope smoothness as a percentage (default 15).
 %   - figTitle - Figure title string; nan means no title (default nan).
 %   - views (cell) - Views as named string labels or 1x2 [az, el] numeric pairs (default {'left','front','top'}).
 %   - backgroundClr - Background and axes fill color (default 'w').
 %   - objectsClr - Axes, tick, and label color (default 'k').
 %   - alphaTemplate (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms, e.g. front->anterior (default false).
+%   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
 % Output Arguments:
 %   - hfig (figure handle) - The figure handle.
 %   - axs (1xN axes array) - Array of axes handles, one per view tile.
@@ -25,13 +26,14 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
     arguments
         hfig
         MNIatlasVolume
-        opts.brainSmoothness (1,1) double = 10
+        opts.brainSmoothness (1,1) double = 15
         opts.figTitle = nan
         opts.views (1,:) cell = {'left', 'front', 'top'}
         opts.backgroundClr = 'w'
         opts.objectsClr = 'k'
         opts.alphaTemplate (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
+        opts.camlight (1,1) logical = false
     end
 
     smoothness = opts.brainSmoothness / 100;
@@ -94,6 +96,12 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
                 text(ax, p1(1), p1(2), p1(3), text1, 'Color', opts.objectsClr)
                 text(ax, p2(1), p2(2), p2(3), text2, 'Color', opts.objectsClr)
             end
+        end
+
+        % apply camlight and lighting if requested
+        if opts.camlight
+            camlight(ax);
+            lighting(ax, 'gouraud');
         end
 
         axs(v) = ax;

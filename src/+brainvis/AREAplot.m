@@ -13,7 +13,7 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
 %   - ROIsNumbers (1xM double) - Atlas label numbers of ROIs to display.
 %   - colors (1xM cell) - Color for each ROI; length must match ROIsNumbers.
 % Name-Value Options:
-%   - brainSmoothness (double) - Brain envelope smoothness as a percentage (default 10).
+%   - brainSmoothness (double) - Brain envelope smoothness as a percentage (default 15).
 %   - roiSmoothness (double) - ROI alpha shape smoothness as a percentage (default 20).
 %   - figTitle - Figure title; nan means no title (default nan).
 %   - alpha (double) - ROI face transparency 0-1 (default 0.75).
@@ -34,7 +34,7 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
         atlasLabels
         ROIsNumbers
         colors
-        opts.brainSmoothness (1,1) double = 10
+        opts.brainSmoothness (1,1) double = 15
         opts.roiSmoothness (1,1) double = 20
         opts.figTitle = nan
         opts.alpha (1,1) double = 0.75
@@ -59,7 +59,8 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
         'backgroundClr', opts.backgroundClr, ...
         'objectsClr', opts.objectsClr, ...
         'alphaTemplate', opts.alphaTemplate, ...
-        'mapViewLabels', opts.mapViewLabels);
+        'mapViewLabels', opts.mapViewLabels, ...
+        'camlight', opts.camlight);
 
     % -- build ROI alpha shapes (once, before axes loop)
     roiShapes = cell(1, length(ROIsNumbers));
@@ -81,11 +82,6 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
         xlim(axs(v), [-89, 90]);
         ylim(axs(v), [-108, 73]);
         zlim(axs(v), [-74.5, 104.5]);
-
-        if opts.camlight
-            camlight;
-            lighting gouraud;
-        end
     end
 
     % -- output
