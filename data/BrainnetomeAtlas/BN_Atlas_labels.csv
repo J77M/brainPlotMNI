@@ -1,0 +1,124 @@
+LeftIndex,RightIndex,Label,FullName,Gyrus,GyrusFullName,Lobe
+1,2,A8m,medial area 8,SFG,Superior frontal gyrus,Frontal lobe
+3,4,A8dl,dorsolateral area 8,SFG,Superior frontal gyrus,Frontal lobe
+5,6,A9l,lateral area 9,SFG,Superior frontal gyrus,Frontal lobe
+7,8,A6dl,dorsolateral area 6,SFG,Superior frontal gyrus,Frontal lobe
+9,10,A6m,medial area 6,SFG,Superior frontal gyrus,Frontal lobe
+11,12,A9m,medial area 9,SFG,Superior frontal gyrus,Frontal lobe
+13,14,A10m,medial area 10,SFG,Superior frontal gyrus,Frontal lobe
+15,16,A9/46d,dorsal area 9/46,MFG,Middle frontal gyrus,Frontal lobe
+17,18,IFJ,inferior frontal junction,MFG,Middle frontal gyrus,Frontal lobe
+19,20,A46,area 46,MFG,Middle frontal gyrus,Frontal lobe
+21,22,A9/46v,ventral area 9/46,MFG,Middle frontal gyrus,Frontal lobe
+23,24,A8vl,ventrolateral area 8,MFG,Middle frontal gyrus,Frontal lobe
+25,26,A6vl,ventrolateral area 6,MFG,Middle frontal gyrus,Frontal lobe
+27,28,A10l,lateral area 10,MFG,Middle frontal gyrus,Frontal lobe
+29,30,A44d,dorsal area 44,IFG,Inferior frontal gyrus,Frontal lobe
+31,32,IFS,inferior frontal sulcus,IFG,Inferior frontal gyrus,Frontal lobe
+33,34,A45c,caudal area 45,IFG,Inferior frontal gyrus,Frontal lobe
+35,36,A45r,rostral area 45,IFG,Inferior frontal gyrus,Frontal lobe
+37,38,A44op,opercular area 44,IFG,Inferior frontal gyrus,Frontal lobe
+39,40,A44v,ventral area 44,IFG,Inferior frontal gyrus,Frontal lobe
+41,42,A14m,medial area 14,OrG,Orbital gyrus,Frontal lobe
+43,44,A12/47o,orbital area 12/47,OrG,Orbital gyrus,Frontal lobe
+45,46,A11l,lateral area 11,OrG,Orbital gyrus,Frontal lobe
+47,48,A11m,medial area 11,OrG,Orbital gyrus,Frontal lobe
+49,50,A13,area 13,OrG,Orbital gyrus,Frontal lobe
+51,52,A12/47l,lateral area 12/47,OrG,Orbital gyrus,Frontal lobe
+53,54,A4hf,area 4(head and face region),PrG,Precentral gyrus,Frontal lobe
+55,56,A6cdl,caudal dorsolateral area 6,PrG,Precentral gyrus,Frontal lobe
+57,58,A4ul,area 4(upper limb region),PrG,Precentral gyrus,Frontal lobe
+59,60,A4t,area 4(trunk region),PrG,Precentral gyrus,Frontal lobe
+61,62,A4tl,area 4(tongue and larynx region),PrG,Precentral gyrus,Frontal lobe
+63,64,A6cvl,caudal ventrolateral area 6,PrG,Precentral gyrus,Frontal lobe
+65,66,A1/2/3ll,area 1/2/3 (lower limb region),PCL,Paracentral lobule,Frontal lobe
+67,68,A4ll,"area 4, (lower limb region)",PCL,Paracentral lobule,Frontal lobe
+69,70,A38m,medial area 38,STG,Superior temporal gyrus,Temporal lobe
+71,72,A41/42,area 41/42,STG,Superior temporal gyrus,Temporal lobe
+73,74,TE1.0 and TE1.2,,STG,Superior temporal gyrus,Temporal lobe
+75,76,A22c,caudal area 22,STG,Superior temporal gyrus,Temporal lobe
+77,78,A38l,lateral area 38,STG,Superior temporal gyrus,Temporal lobe
+79,80,A22r,rostral area 22,STG,Superior temporal gyrus,Temporal lobe
+81,82,A21c,caudal area 21,MTG,Middle temporal gyrus,Temporal lobe
+83,84,A21r,rostral area 21,MTG,Middle temporal gyrus,Temporal lobe
+85,86,A37dl,dorsolateral area 37,MTG,Middle temporal gyrus,Temporal lobe
+87,88,aSTS,anterior superior temporal sulcus,MTG,Middle temporal gyrus,Temporal lobe
+89,90,A20iv,intermediate ventral area 20,ITG,Inferior temporal gyrus,Temporal lobe
+91,92,A37elv,extreme lateroventral area 37,ITG,Inferior temporal gyrus,Temporal lobe
+93,94,A20r,rostral area 20,ITG,Inferior temporal gyrus,Temporal lobe
+95,96,A20il,intermediate lateral area 20,ITG,Inferior temporal gyrus,Temporal lobe
+97,98,A37vl,ventrolateral area 37,ITG,Inferior temporal gyrus,Temporal lobe
+99,100,A20cl,caudolateral of area 20,ITG,Inferior temporal gyrus,Temporal lobe
+101,102,A20cv,caudoventral of area 20,ITG,Inferior temporal gyrus,Temporal lobe
+103,104,A20rv,rostroventral area 20,FuG,Fusiform gyrus,Temporal lobe
+105,106,A37mv,medioventral area 37,FuG,Fusiform gyrus,Temporal lobe
+107,108,A37lv,lateroventral area 37,FuG,Fusiform gyrus,Temporal lobe
+109,110,A35/36r,rostral area 35/36,PhG,Parahippocampal gyrus,Temporal lobe
+111,112,A35/36c,caudal area 35/36,PhG,Parahippocampal gyrus,Temporal lobe
+113,114,TL,"area TL (lateral PPHC, posterior parahippocampal gyrus)",PhG,Parahippocampal gyrus,Temporal lobe
+115,116,A28/34,"area 28/34 (EC, entorhinal cortex)",PhG,Parahippocampal gyrus,Temporal lobe
+117,118,TI,area TI(temporal agranular insular cortex),PhG,Parahippocampal gyrus,Temporal lobe
+119,120,TH,area TH (medial PPHC),PhG,Parahippocampal gyrus,Temporal lobe
+121,122,rpSTS,rostroposterior superior temporal sulcus,pSTS,Posterior superior temporal sulcus,Temporal lobe
+123,124,cpSTS,caudoposterior superior temporal sulcus,pSTS,Posterior superior temporal sulcus,Temporal lobe
+125,126,A7r,rostral area 7,SPL,Superior parietal lobule,Parietal lobe
+127,128,A7c,caudal area 7,SPL,Superior parietal lobule,Parietal lobe
+129,130,A5l,lateral area 5,SPL,Superior parietal lobule,Parietal lobe
+131,132,A7pc,postcentral area 7,SPL,Superior parietal lobule,Parietal lobe
+133,134,A7ip,intraparietal area 7(hIP3),SPL,Superior parietal lobule,Parietal lobe
+135,136,A39c,caudal area 39(PGp),IPL,Inferior parietal lobule,Parietal lobe
+137,138,A39rd,rostrodorsal area 39(Hip3),IPL,Inferior parietal lobule,Parietal lobe
+139,140,A40rd,rostrodorsal area 40(PFt),IPL,Inferior parietal lobule,Parietal lobe
+141,142,A40c,caudal area 40(PFm),IPL,Inferior parietal lobule,Parietal lobe
+143,144,A39rv,rostroventral area 39(PGa),IPL,Inferior parietal lobule,Parietal lobe
+145,146,A40rv,rostroventral area 40(PFop),IPL,Inferior parietal lobule,Parietal lobe
+147,148,A7m,medial area 7(PEp),Pcun,Precuneus,Parietal lobe
+149,150,A5m,medial area 5(PEm),Pcun,Precuneus,Parietal lobe
+151,152,dmPOS,dorsomedial parietooccipital sulcus(PEr),Pcun,Precuneus,Parietal lobe
+153,154,A31,area 31 (Lc1),Pcun,Precuneus,Parietal lobe
+155,156,A1/2/3ulhf,"area 1/2/3(upper limb, head and face region)",PoG,Postcentral gyrus,Parietal lobe
+157,158,A1/2/3tonIa,area 1/2/3(tongue and larynx region),PoG,Postcentral gyrus,Parietal lobe
+159,160,A2,area 2,PoG,Postcentral gyrus,Parietal lobe
+161,162,A1/2/3tru,area 1/2/3(trunk region),PoG,Postcentral gyrus,Parietal lobe
+163,164,G,hypergranular insula,INS,Insular gyrus,Insular lobe
+165,166,vIa,ventral agranular insula,INS,Insular gyrus,Insular lobe
+167,168,dIa,dorsal agranular insula,INS,Insular gyrus,Insular lobe
+169,170,vId/vIg,ventral dysgranular and granular insula,INS,Insular gyrus,Insular lobe
+171,172,dIg,dorsal granular insula,INS,Insular gyrus,Insular lobe
+173,174,dId,dorsal dysgranular insula,INS,Insular gyrus,Insular lobe
+175,176,A23d,dorsal area 23,CG,Cingulate gyrus,Limbic lobe
+177,178,A24rv,rostroventral area 24,CG,Cingulate gyrus,Limbic lobe
+179,180,A32p,pregenual area 32,CG,Cingulate gyrus,Limbic lobe
+181,182,A23v,ventral area 23,CG,Cingulate gyrus,Limbic lobe
+183,184,A24cd,caudodorsal area 24,CG,Cingulate gyrus,Limbic lobe
+185,186,A23c,caudal area 24,CG,Cingulate gyrus,Limbic lobe
+187,188,A32sg,subgenual area 32,CG,Cingulate gyrus,Limbic lobe
+189,190,cLinG,caudal lingual gyrus,MVOcC, MedioVentral occipital cortex,Occipital lobe
+191,192,rCunG,rostral cuneus gyrus,MVOcC, MedioVentral occipital cortex,Occipital lobe
+193,194,cCunG,caudal cuneus gyrus,MVOcC, MedioVentral occipital cortex,Occipital lobe
+195,196,rLinG,rostral lingual gyrus,MVOcC, MedioVentral occipital cortex,Occipital lobe
+197,198,vmPOS,ventromedial parietooccipital sulcus,MVOcC, MedioVentral occipital cortex,Occipital lobe
+199,200,mOccG,middle occipital gyrus,LOcC,Lateral occipital cortex,Occipital lobe
+201,202,V5/MT+,area V5/MT+,LOcC,Lateral occipital cortex,Occipital lobe
+203,204,OPC,occipital polar cortex,LOcC,Lateral occipital cortex,Occipital lobe
+205,206,iOccG,inferior occipital gyrus,LOcC,Lateral occipital cortex,Occipital lobe
+207,208,msOccG,medial superior occipital gyrus,LOcC,Lateral occipital cortex,Occipital lobe
+209,210,lsOccG,lateral superior occipital gyrus,LOcC,Lateral occipital cortex,Occipital lobe
+211,212,mAmyg,medial amygdala,Amyg,Amygdala,Subcortical nuclei
+213,214,lAmyg,lateral amygdala,Amyg,Amygdala,Subcortical nuclei
+215,216,rHipp,rostral hippocampus,Hipp,Hippocampus,Subcortical nuclei
+217,218,cHipp,caudal hippocampus,Hipp,Hippocampus,Subcortical nuclei
+219,220,vCa,ventral caudate,BG,Basal ganglia,Subcortical nuclei
+221,222,GP,globus pallidus,BG,Basal ganglia,Subcortical nuclei
+223,224,NAC,nucleus accumbens,BG,Basal ganglia,Subcortical nuclei
+225,226,vmPu,ventromedial putamen,BG,Basal ganglia,Subcortical nuclei
+227,228,dCa,dorsal caudate,BG,Basal ganglia,Subcortical nuclei
+229,230,dlPu,dorsolateral putamen,BG,Basal ganglia,Subcortical nuclei
+231,232,mPFtha,medial pre-frontal thalamus,Tha,Thalamus,Subcortical nuclei
+233,234,mPMtha,pre-motor thalamus,Tha,Thalamus,Subcortical nuclei
+235,236,Stha,sensory thalamus,Tha,Thalamus,Subcortical nuclei
+237,238,rTtha,rostral temporal thalamus,Tha,Thalamus,Subcortical nuclei
+239,240,PPtha,posterior parietal thalamus,Tha,Thalamus,Subcortical nuclei
+241,242,Otha,occipital thalamus,Tha,Thalamus,Subcortical nuclei
+243,244,cTtha,caudal temporal thalamus,Tha,Thalamus,Subcortical nuclei
+245,246,lPFtha,lateral pre-frontal thalamus,Tha,Thalamus,Subcortical nuclei
