@@ -1,17 +1,17 @@
-function [MNI_V, labels] = volume2MNI(Volume, transform, opts)
+function [volumeMNI, labels] = volume2MNI(Volume, transform, opts)
 % VOLUME2MNI - Converts a 3D atlas volume to MNI coordinate space.
 %   Iterates over all voxels in the 3D volume, filters out voxels with
 %   the ignoreVal label (background), and applies the affine transformation
 %   matrix to obtain MNI coordinates in millimeters for each labeled voxel.
 % Syntax:
-%   [MNI_V, labels] = volume2MNI(Volume, transform) Filters out label 0.
+%   [volumeMNI, labels] = volume2MNI(Volume, transform) Filters out label 0.
 % Input Arguments:
 %   - Volume (3D numeric array) - Voxel values of the atlas (from loadAtlasVolume).
 %   - transform (3x4 double) - Affine transform matrix (from loadAtlasVolume).
 % Name-Value Options:
 %   - ignoreVal (double) - Label value to filter out as background (default: 0).
 % Output Arguments:
-%   - MNI_V (Mx3 double) - MNI coordinates [x, y, z] in mm for each labeled voxel.
+%   - volumeMNI (Mx3 double) - MNI coordinates [x, y, z] in mm for each labeled voxel.
 %   - labels (Mx1 double) - Atlas label values corresponding to each MNI coordinate.
 
     arguments
@@ -35,10 +35,10 @@ function [MNI_V, labels] = volume2MNI(Volume, transform, opts)
     labels = labels(labels ~= opts.ignoreVal).';
 
 %     transform (only offset)
-%     MNI_V = coordinates_indices - ones(size(coordinates_indices)) + transform(:, 4).';
+%     volumeMNI = coordinates_indices - ones(size(coordinates_indices)) + transform(:, 4).';
 
     % transform offset
     coordinates_indices = coordinates_indices - ones(size(coordinates_indices));
-    MNI_V = transform(:, 1:3)*coordinates_indices.' + transform(:, 4);
-    MNI_V = MNI_V.';
+    volumeMNI = transform(:, 1:3)*coordinates_indices.' + transform(:, 4);
+    volumeMNI = volumeMNI.';
 end
