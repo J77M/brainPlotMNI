@@ -59,7 +59,7 @@ Both formats must include a `Label` column. Additional columns (e.g. `FullName`,
 
 Colin27 derives from 27 high-resolution T1-weighted MRI scans of a single individual (Colin Holmes), averaged after processing, making it detailed but less representative of population variability. MNI152 averages 152 healthy subjects' T1-weighted scans (often with T2/PD variants), using linear (e.g., 9-parameter) and nonlinear registrations for a more unbiased, symmetric template. Both the Colin27 and MNI152 brain templates use the same MNI (Montreal Neurological Institute) coordinate system.
 
-> One is more suitable for our data than the other. It depends on which template was used to obtain the MNI coordinates (the MRI scans are fitted to the brain template).
+One is more suitable for our data than the other. It depends on which template was used to obtain the MNI coordinates (the MRI scans are fitted to the brain template).
 
 
 > Holmes CJ, Hoge R, Collins L, Woods R, Toga AW, Evans AC. Enhancement of MR images using registration for signal averaging. J Comput Assist Tomogr. 1998 Mar-Apr;22(2):324-33. doi: 10.1097/00004728-199803000-00032. PMID: 9530404.
