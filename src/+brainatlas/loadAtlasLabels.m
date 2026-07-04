@@ -1,9 +1,9 @@
 function T_out = loadAtlasLabels(csvPath)
 % LOADATLASLABELS - Reads an atlas CSV and collapses left/right indices.
 %   Reads a CSV file containing either:
-%   - LeftIndex, RightIndex, Label columns (laterality is split per row) —
+%   - LeftIndex, RightIndex, Label columns (laterality is split per row) -
 %     collapses each pair into separate rows with L_/R_ prefixes.
-%   - Index, Label columns (single bilateral index per row) — returned as-is.
+%   - Index, Label columns (single bilateral index per row) - returned as-is.
 %   If a BrodmanArea column exists in the left/right format, laterality
 %   prefixes are omitted.
 % Syntax:

@@ -18,10 +18,10 @@ volumePath = fullfile(dataDir, 'YeoAtlas', 'Yeo2011_7Networks_MNI152_FreeSurferC
 
 % -- plot the empty brain envelope
 hfig = figure;
-hfig.Position(3:end) = [720, 270];
+hfig.Position(3:end) = [720, 230];
 
 brainvis.BRAINplot(hfig, volumeMNI, brainAlpha=1, brainSmoothness=50, ...
-    brainClr="#80B3FF", camlight=true);
+    brainClr="w", camlight=true, backgroundClr='k', axesClr='w');
 % brainAlpha        sets the transparency of the brain
 % brainSmoothness   (percentage %) sets how smoothness of the generated volume 
 %                       - percentage of vertices taken into account
