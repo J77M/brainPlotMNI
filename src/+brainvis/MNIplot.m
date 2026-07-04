@@ -19,7 +19,7 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
 %   - backgroundClr - Background color (default 'w').
 %   - brainClr - Brain envelope color (default 'k').
 %   - axesClr - Axes and label color (default 'k').
-%   - alphaTemplate (double) - Brain envelope face transparency 0-1 (default 0.04).
+%   - brainAlpha (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
 % Output Arguments:
@@ -39,7 +39,7 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
         opts.backgroundClr = 'w'
         opts.brainClr = 'k'
         opts.axesClr = 'k'
-        opts.alphaTemplate (1,1) double = 0.04
+        opts.brainAlpha (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
     end
@@ -62,7 +62,7 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
         'backgroundClr', opts.backgroundClr, ...
         'brainClr', opts.brainClr, ...
         'axesClr', opts.axesClr, ...
-        'alphaTemplate', opts.alphaTemplate, ...
+        'brainAlpha', opts.brainAlpha, ...
         'mapViewLabels', opts.mapViewLabels, ...
         'camlight', opts.camlight);
 

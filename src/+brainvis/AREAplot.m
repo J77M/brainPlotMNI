@@ -21,7 +21,7 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
 %   - backgroundClr - Background color (default 'w').
 %   - brainClr - Brain envelope color (default 'k').
 %   - axesClr - Axes and label color (default 'k').
-%   - alphaTemplate (double) - Brain envelope face transparency 0-1 (default 0.04).
+%   - brainAlpha (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view after plotting (default false).
 % Output Arguments:
@@ -43,7 +43,7 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
         opts.backgroundClr = 'w'
         opts.brainClr = 'k'
         opts.axesClr = 'k'
-        opts.alphaTemplate (1,1) double = 0.04
+        opts.brainAlpha (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
     end
@@ -61,7 +61,7 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
         'backgroundClr', opts.backgroundClr, ...
         'brainClr', opts.brainClr, ...
         'axesClr', opts.axesClr, ...
-        'alphaTemplate', opts.alphaTemplate, ...
+        'brainAlpha', opts.brainAlpha, ...
         'mapViewLabels', opts.mapViewLabels, ...
         'camlight', opts.camlight);
 
@@ -80,11 +80,16 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
             plot(roiShapes{roi}, 'FaceColor', colors{roi}, 'FaceAlpha', opts.alpha, 'EdgeColor', 'none');
         end
 
-        % workaround for scaling of fugures (axis limits being reset by plot calls?)
+        % workaround for scaling of figures (axis limits being reset by plot calls?)
         pbaspect(axs(v), [1, 1, 1]);
         xlim(axs(v), [-89, 90]);
         ylim(axs(v), [-108, 73]);
         zlim(axs(v), [-74.5, 104.5]);
+
+        if opts.camlight
+            camlight(axs(v));
+            lighting(axs(v), 'gouraud');
+        end
     end
 
     % -- output

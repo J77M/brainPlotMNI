@@ -16,7 +16,7 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
 %   - backgroundClr - Background and axes fill color (default 'w').
 %   - brainClr - Brain envelope color (default 'k').
 %   - axesClr - Axes, tick, and label color (default 'k').
-%   - alphaTemplate (double) - Brain envelope face transparency 0-1 (default 0.04).
+%   - brainAlpha (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms, e.g. front->anterior (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
 % Output Arguments:
@@ -33,7 +33,7 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
         opts.backgroundClr = 'w'
         opts.brainClr = 'k'
         opts.axesClr = 'k'
-        opts.alphaTemplate (1,1) double = 0.04
+        opts.brainAlpha (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
     end
@@ -55,7 +55,7 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
     % -- iterate over views
     for v = 1:nViews
         nexttile
-        plot(shp, 'FaceColor', opts.brainClr, 'FaceAlpha', opts.alphaTemplate, 'EdgeColor', 'none')
+        plot(shp, 'FaceColor', opts.brainClr, 'FaceAlpha', opts.brainAlpha, 'EdgeColor', 'none')
         ax = gca;
         hold(ax, 'on')
 
