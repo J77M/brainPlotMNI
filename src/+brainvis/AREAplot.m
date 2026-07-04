@@ -24,6 +24,7 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
 %   - brainAlpha (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view after plotting (default false).
+%   - subtitle (logical) - Show view name subtitles on each tile (default true).
 % Output Arguments:
 %   - hfig (figure handle) - The figure handle.
 %   - axs (1xN axes array) - Axes handles, one per view tile (optional).
@@ -46,6 +47,7 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
         opts.brainAlpha (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
+        opts.subtitle (1,1) logical = true
     end
 
     assert(length(ROIsNumbers) == length(colors), ...
@@ -63,7 +65,8 @@ function varargout = AREAplot(hfig, MNIatlasVolume, atlasLabels, ROIsNumbers, co
         'axesClr', opts.axesClr, ...
         'brainAlpha', opts.brainAlpha, ...
         'mapViewLabels', opts.mapViewLabels, ...
-        'camlight', opts.camlight);
+        'camlight', opts.camlight, ...
+        'subtitle', opts.subtitle);
 
     % -- build ROI alpha shapes (once, before axes loop)
     roiShapes = cell(1, length(ROIsNumbers));

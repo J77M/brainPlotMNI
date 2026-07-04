@@ -19,6 +19,7 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
 %   - brainAlpha (double) - Brain envelope face transparency 0-1 (default 0.04).
 %   - mapViewLabels (logical) - Map view names to anatomical terms, e.g. front->anterior (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
+%   - subtitle (logical) - Show view name subtitles on each tile (default true).
 % Output Arguments:
 %   - hfig (figure handle) - The figure handle.
 %   - axs (1xN axes array) - Array of axes handles, one per view tile.
@@ -36,6 +37,7 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
         opts.brainAlpha (1,1) double = 0.04
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
+        opts.subtitle (1,1) logical = true
     end
 
     smoothness = opts.brainSmoothness / 100;
@@ -82,7 +84,7 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
         ax.Toolbar.Visible = 'off';
 
         % add tile title for named views when there are multiple tiles
-        if nViews > 1 && isNamed
+        if opts.subtitle && nViews > 1 && isNamed
             displayLabel = label;
             if opts.mapViewLabels
                 displayLabel = applyLabelMap(label);
