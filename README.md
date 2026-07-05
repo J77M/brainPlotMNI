@@ -1,6 +1,6 @@
 # brainPlotMNI
 
-MATLAB library for 3D brain visualization and atlas-based anatomical mapping of intracranial EEG (iEEG) data in MNI space. Covers the full workflow - loading [NIfTI](https://nifti.nimh.nih.gov/nifti-1.html) atlas volumes, localizing electrode channels to anatomical areas, and producing publication-ready 3D renders of channel positions, labeled atlas areas/ROIs, and inter-regional connectivity. Example scripts included for every feature.
+MATLAB library for 3D brain visualization and atlas-based anatomical mapping of intracranial EEG (iEEG) data in MNI space. Covers the full workflow - loading brain atlas volumes in [NIfTI](https://nifti.nimh.nih.gov/nifti-1.html) format, localizing electrode channels to anatomical areas, and producing publication-ready 3D renders of channel positions, labeled atlas areas/ROIs, and inter-regional connectivity. Example scripts included for every feature.
 
 Developed primarily for stereo-EEG (SEEG), but applicable to ECoG and other neuroimaging methods.
 
@@ -90,7 +90,7 @@ brainPlotMNI/
 
 ## Channel Localization
 
-To assign an anatomical label to each iEEG electrode, `MNI2AtlasLabels` searches the atlas volume around each channel's MNI coordinate using a growing spherical radius. The most frequent atlas label found within the sphere is assigned, and the distance to the nearest voxel of that label is returned as a confidence metric (large distances suggest white matter or unlabeled regions).
+To assign an anatomical label to each iEEG electrode, `MNI2AtlasLabels` searches the atlas volume around each channel's MNI coordinate using a sphere (with `radiusInit=5` [mm], if no labeled voxels are found within the sphere, radius is increase by 1 mm). The most frequent atlas label of voxels found within the sphere is assigned to the channel, and the distance to the nearest voxel of that label is returned as a confidence metric (large distances suggest white matter or unlabeled regions).
 
 The workflow is:
 
@@ -102,12 +102,12 @@ The workflow is:
 % 2. Load the label table (numeric IDs -> area names)
 atlasLabelsTable = brainatlas.loadAtlasLabels('data/BrainnetomeAtlas/BN_Atlas_labels.csv');
 
-% 3. Localize your channels (Nx3 MNI coordinates)
+% 3. Localize your channels (channelsMNI is Nx3 MNI coordinates matrix)
 [chanLabels, chanDist, chanProbs] = brainatlas.MNI2AtlasLabels( ...
     channelsMNI, volumeMNI, volumeLabels, atlasLabelsTable.Index, atlasLabelsTable.Label);
 ```
 
-The output `chanLabels` contains the most probable anatomical area name per channel, `chanDist` gives the distance to the nearest labeled voxel, and `chanProbs` provides a comma-separated breakdown of all label probabilities above 10%.
+The output `chanLabels` contains the most probable anatomical area name per channel, `chanDist` gives the distance to the nearest labeled voxel, and `chanProbs` provides a comma-separated breakdown of all label probabilities (above 10%).
 
 ## Data
 
@@ -124,7 +124,7 @@ Other atlases can be added as long as they are provided as a `.nii` volume (idea
 
 Source code in `src/` and `examples/` is under the [MIT License](LICENSE). Atlas data files in `data/` are redistributed under their original terms:
 
-**Brainnetome Atlas** - non-commercial use only (commercial use requires a request - see [terms](https://www.nitrc.org/include/glossary.php)).
+**Brainnetome Atlas** - non-commercial use only (commercial use requires a request - see [terms](https://atlas.brainnetome.org/download.html)).
 > Fan L, Li H, Zhuo J, Zhang Y, Wang J, Chen L, Yang Z, Chu C, Xie S, Laird AR, Fox PT, Eickhoff SB, Yu C, Jiang T. The Human Brainnetome Atlas: A New Brain Atlas Based on Connectional Architecture. Cereb Cortex. 2016 Aug;26(8):3508-26. doi: 10.1093/cercor/bhw157. Epub 2016 May 26. PMID: 27230218; PMCID: PMC4961028.
 
 **Yeo 7/17 Networks** - distributed under the [FreeSurfer Software License Agreement](freeSurferLicense.txt), which permits redistribution. Original brain parcellation under MIT license (see [here](https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/brain_parcellation/Yeo2011_fcMRI_clustering/1000subjects_reference/Yeo_JNeurophysiol11_SplitLabels)). However this provides a splited parcellation.
