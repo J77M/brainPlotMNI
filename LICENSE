@@ -1,3 +1,10 @@
+The MIT License below applies to the source code in the `src/` and `examples/`
+directories. The atlas data files in the `data/` directory are redistributed
+under their own license terms — see the License & Attribution section in
+README.md for details.
+
+---
+
 MIT License
 
 Copyright (c) 2026 jur0

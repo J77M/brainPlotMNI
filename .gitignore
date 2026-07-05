@@ -1,3 +1,4 @@
+tmp/*
 TODO.md
 # not included because of copyright (not sure about license)
 data/MarsAtlas/*.nii

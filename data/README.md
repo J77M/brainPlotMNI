@@ -1,14 +1,16 @@
 # Brain atlases
 
-The atlases are in NIfTI-format neuroimaging file (`.nii` extension) representing the atlas parcellation overlaid on the brain template in MNI space. The following atlases are used: 
+The atlases are in [NIfTI-format (version 1)](https://nifti.nimh.nih.gov/nifti-1.html) neuroimaging file (`.nii` extension) representing the atlas parcellation overlaid on the brain template in MNI space. The following atlases were used and tested for this project:
 
-## [Brainnetome Atlas](https://atlas.brainnetome.org/download.html)
+## [Brainnetome Atlas](https://atlas.brainnetome.org/brainnetome.html)
 
 Brainnetome Atlas provides a multi-level parcellation of the human brain. It is a structural and functional atlas, integrating connectivity data from diffusion MRI and resting-state fMRI. Based on the MNI152 template space.
 
 + [`BN_Atlas_246_1mm.nii`](BrainnetomeAtlas/BN_Atlas_246_1mm.nii): Atlas parcellation (voxels with label `0` represent not-parceled areas - white matter or space around the brain).
 + [`BN_Atlas_labels.csv`](BrainnetomeAtlas/BN_Atlas_labels.csv): Table assigning voxel labels (numeric) to atlas labels (names), description, gyruses, lobes.
 + [`BN_Atlas_246_LUT.ctbl`](BrainnetomeAtlas/BN_Atlas_246_LUT.ctbl): Color table for Slicer 3D (colors and labels).
+
+Data (except the `BN_Atlas_labels.csv`) were downloaded from: [https://atlas.brainnetome.org/download.html](https://atlas.brainnetome.org/download.html)
 
 > Fan L, Li H, Zhuo J, Zhang Y, Wang J, Chen L, Yang Z, Chu C, Xie S, Laird AR, Fox PT, Eickhoff SB, Yu C, Jiang T. The Human Brainnetome Atlas: A New Brain Atlas Based on Connectional Architecture. Cereb Cortex. 2016 Aug;26(8):3508-26. doi: 10.1093/cercor/bhw157. Epub 2016 May 26. PMID: 27230218; PMCID: PMC4961028.
 
@@ -21,7 +23,11 @@ Yeo atlases (Yeo7 and Yeo17) divide the cortex into 7 or 17 networks based on re
 + [`Yeo2011_7Networks_ColorLUT.txt`](YeoAtlas/Yeo2011_7Networks_ColorLUT.txt): Color lookup table for the 7 networks.
 + [`Yeo2011_7Networks_LABELS_ColorLUT.ctbl`](YeoAtlas/Yeo2011_7Networks_LABELS_ColorLUT.ctbl): Color table for Slicer 3D (colors and labels).
 
-An analogous set of files exists for the 17-Network variant (prefix `Yeo2011_17Networks_`).
+An analogous set of files exists for the 17-Network variant.
+Data (except the `.csv` files) were downloaded from: [https://surfer.nmr.mgh.harvard.edu/fswiki/CorticalParcellation_Yeo2011](https://surfer.nmr.mgh.harvard.edu/fswiki/CorticalParcellation_Yeo2011). 
+
+A more detailed version with split parcellations can be obtained from: [https://github.com/ThomasYeoLab/CBIG](https://github.com/ThomasYeoLab/CBIG/tree/master/stable_projects/brain_parcellation/Yeo2011_fcMRI_clustering/1000subjects_reference/Yeo_JNeurophysiol11_SplitLabels) (under MIT license).
+ 
 
 > Yeo BT, Krienen FM, Sepulcre J, Sabuncu MR, Lashkari D, Hollinshead M, Roffman JL, Smoller JW, Zöllei L, Polimeni JR, Fischl B, Liu H, Buckner RL. The organization of the human cerebral cortex estimated by intrinsic functional connectivity. J Neurophysiol. 2011 Sep;106(3):1125-65. doi: 10.1152/jn.00338.2011. Epub 2011 Jun 8. PMID: 21653723; PMCID: PMC3174820.
 
@@ -30,16 +36,18 @@ An analogous set of files exists for the 17-Network variant (prefix `Yeo2011_17N
 
 MarsAtlas is a cortical parcellation atlas designed for functional neuroimaging studies. It is primarily a structural atlas based on macroanatomical landmarks, optimized for mapping functional data like fMRI or SEEG. Based on the Colin27 template space.
 
-+ [`colin27_MNI_MarsAtlas.nii`](MarsAtlas/colin27_MNI_MarsAtlas.nii): Atlas parcellation (voxels with label `255` represent not-parceled areas - white matter or space around the brain). [**Download from here**](https://meca-brain.org/software/marsatlas-colin27/)
++ [`colin27_MNI_MarsAtlas.nii`](MarsAtlas/colin27_MNI_MarsAtlas.nii): Atlas parcellation (voxels with label `255` represent not-parceled areas - white matter or space around the brain). **Not included - download separately**.
 + [`marsAtlas_labels.csv`](MarsAtlas/marsAtlas_labels.csv): Table assigning voxel labels (numeric) to atlas labels (names), description, Broadmann areas, lobes.
 + [`marsAtlas_LUT.ctbl`](MarsAtlas/marsAtlas_LUT.ctbl): Color table for Slicer 3D (colors and labels).
+
+Data were downloaded from: [https://meca-brain.org/software/marsatlas-colin27](https://meca-brain.org/software/marsatlas-colin27). The `marsAtlas_labels.csv` was copied from the [atlas description](https://meca-brain.org/software/marsatlas/)
 
 > Auzias G, Coulon O, Brovelli A. MarsAtlas: A cortical parcellation atlas for functional mapping. Hum Brain Mapp. 2016 Apr;37(4):1573-92. doi: 10.1002/hbm.23121. Epub 2016 Jan 27. PMID: 26813563; PMCID: PMC6867384.
 
 
 ## Expected Atlas Label CSV Format
 
-The labels table (`.csv`) must use one of two formats:
+When adding a new atlas, the library expects a labels (of the areas/voxels) in a table (`.csv`) in formats:
 
 **Left/Right index format** (e.g. Brainnetome, MarsAtlas) - each row encodes both hemispheres:
 ```
