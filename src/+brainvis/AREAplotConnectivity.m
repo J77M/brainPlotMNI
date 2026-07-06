@@ -24,6 +24,8 @@ function varargout = AREAplotConnectivity(hfig, MNIatlasVolume, atlasLabels, ROI
 %   - mapViewLabels (logical) - Map view names to anatomical terms (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
 %   - subtitle (logical) - Show view name subtitles on each tile (default true).
+%   - viewLabels (logical) - Show anatomical direction corner labels (default true).
+%   - axesVisible (logical) - Show axes, ticks, and labels (default true).
 %   - alpha (double) - Sphere face transparency 0-1 (default 0.5).
 %   - sphereRadius (double) - Sphere radius in mm (default 3).
 %   - lineColor - Connectivity line color (default '#0072BD').
@@ -50,6 +52,8 @@ function varargout = AREAplotConnectivity(hfig, MNIatlasVolume, atlasLabels, ROI
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
         opts.subtitle (1,1) logical = true
+        opts.viewLabels (1,1) logical = true
+        opts.axesVisible (1,1) logical = true
         opts.alpha (1,1) double = 0.5
         opts.sphereRadius (1,1) double = 3
         opts.lineColor = '#0072BD'
@@ -70,7 +74,9 @@ function varargout = AREAplotConnectivity(hfig, MNIatlasVolume, atlasLabels, ROI
         'brainAlpha', opts.brainAlpha, ...
         'mapViewLabels', opts.mapViewLabels, ...
         'camlight', opts.camlight, ...
-        'subtitle', opts.subtitle);
+        'subtitle', opts.subtitle, ...
+        'viewLabels', opts.viewLabels, ...
+        'axesVisible', opts.axesVisible);
 
     nROIs = length(ROIsNumbers);
 

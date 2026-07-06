@@ -20,6 +20,8 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
 %   - mapViewLabels (logical) - Map view names to anatomical terms, e.g. front->anterior (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
 %   - subtitle (logical) - Show view name subtitles on each tile (default true).
+%   - viewLabels (logical) - Show anatomical direction corner labels (default true).
+%   - axesVisible (logical) - Show axes, ticks, and labels (default true).
 % Output Arguments:
 %   - hfig (figure handle) - The figure handle.
 %   - axs (1xN axes array) - Array of axes handles, one per view tile.
@@ -38,6 +40,8 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
         opts.subtitle (1,1) logical = true
+        opts.viewLabels (1,1) logical = true
+        opts.axesVisible (1,1) logical = true
     end
 
     smoothness = opts.brainSmoothness / 100;
@@ -56,56 +60,71 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
 
     % -- iterate over views
     for v = 1:nViews
-        nexttile
+        nexttile;
         plot(shp, 'FaceColor', opts.brainClr, 'FaceAlpha', opts.brainAlpha, 'EdgeColor', 'none')
         ax = gca;
-        hold(ax, 'on')
+        hold(ax, 'on');
 
         % resolve view specification to az, el and label
         [az, el, label, isNamed] = resolveView(opts.views{v});
-        view(ax, az, el)
+        view(ax, az, el);
 
-        % -- axis styling
+        % -- axis setup
         pbaspect(ax, [1, 1, 1])
-        xlim(ax, [-89, 90])
-        ylim(ax, [-108, 73])
+        xlim(ax, [-90, 90])
+        ylim(ax, [-108, 76])
         zlim(ax, [-74.5, 104.5])
-        xlabel(ax, "MNI x [mm]")
-        ylabel(ax, "MNI y [mm]")
-        zlabel(ax, "MNI z [mm]")
-        xticks(ax, [-50, 0, 50])
-        yticks(ax, [-50, 0, 50])
-        zticks(ax, [-50, 0, 50])
-        grid(ax, 'off')
+        % axis styling
         set(ax, 'Color', opts.backgroundClr, 'XColor', opts.axesClr, ...
-            'YColor', opts.axesClr, 'ZColor', opts.axesClr);
-        set(ax, 'TickDir', 'out', 'TickLength', [0.02, 0.02]);
+                'YColor', opts.axesClr, 'ZColor', opts.axesClr);
+
+        % -- apply camlight and lighting if requested
+        if opts.camlight
+            camlight(ax);
+            lighting(ax, 'gouraud');
+        end
+        
+        % -- axis limits
+        if opts.axesVisible
+            xlabel(ax, "MNI x [mm]")
+            ylabel(ax, "MNI y [mm]")
+            zlabel(ax, "MNI z [mm]")
+            xticks(ax, [-50, 0, 50])
+            yticks(ax, [-50, 0, 50])
+            zticks(ax, [-50, 0, 50])
+            grid(ax, 'off')
+            set(ax, 'TickDir', 'out', 'TickLength', [0.02, 0.02]);
+        else
+            ax.Visible = 'off';
+        end
+        
+        % disable interactivity and toolbar
         disableDefaultInteractivity(ax);
         ax.Toolbar.Visible = 'off';
 
+        % -- text on the axes
         % add tile title for named views when there are multiple tiles
         if opts.subtitle && nViews > 1 && isNamed
             displayLabel = label;
             if opts.mapViewLabels
                 displayLabel = applyLabelMap(label);
             end
-            title(ax, displayLabel, 'Color', opts.axesClr)
+            title(ax, displayLabel, 'Color', opts.axesClr);
         end
 
         % add anatomical direction corner labels for named views only
-        if isNamed
+        if opts.viewLabels && isNamed
             axLims = [ax.XLim; ax.YLim; ax.ZLim];
             [text1, text2, p1, p2] = getDirectionLabels(label, axLims, offset_text, opts.mapViewLabels);
             if ~isempty(text1)
-                text(ax, p1(1), p1(2), p1(3), text1, 'Color', opts.axesClr)
-                text(ax, p2(1), p2(2), p2(3), text2, 'Color', opts.axesClr)
+                text(ax, p1(1), p1(2), p1(3), text1, 'Color', opts.axesClr);
+                text(ax, p2(1), p2(2), p2(3), text2, 'Color', opts.axesClr);
             end
         end
 
-        % apply camlight and lighting if requested
-        if opts.camlight
-            camlight(ax);
-            lighting(ax, 'gouraud');
+        % show text when axes are not shown
+        if ~opts.axesVisible
+            set(findall(ax, 'type', 'text'), 'visible', 'on')
         end
 
         axs(v) = ax;
@@ -121,10 +140,10 @@ function [hfig, axs, tLayout] = BRAINplot(hfig, MNIatlasVolume, opts)
         anot.FontName = tLayout.Title.FontName;
         anot.FontSize = tLayout.Title.FontSize;
         anot.UserData = 'CustomTitle';
-        pause(0.5)
+        % pause(0.5);
         newPos = [anot.Position(1) - anot.Position(3)/2 anot.Position(2:end)];
         set(anot, 'Position', newPos);
-        pause(0.5)
+        % pause(0.5);
     end
 
 end

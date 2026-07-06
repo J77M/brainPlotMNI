@@ -23,6 +23,8 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
 %   - mapViewLabels (logical) - Map view names to anatomical terms (default false).
 %   - camlight (logical) - Apply camlight and Gouraud lighting per view (default false).
 %   - subtitle (logical) - Show view name subtitles on each tile (default true).
+%   - viewLabels (logical) - Show anatomical direction corner labels (default true).
+%   - axesVisible (logical) - Show axes, ticks, and labels (default true).
 % Output Arguments:
 %   - hfig (figure handle) - The figure handle.
 %   - axs (1xN axes array) - Axes handles, one per view tile (optional).
@@ -44,6 +46,8 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
         opts.mapViewLabels (1,1) logical = false
         opts.camlight (1,1) logical = false
         opts.subtitle (1,1) logical = true
+        opts.viewLabels (1,1) logical = true
+        opts.axesVisible (1,1) logical = true
     end
 
     assert(length(MNIchannelsCell) == length(colors), ...
@@ -67,7 +71,9 @@ function varargout = MNIplot(hfig, MNIatlasVolume, MNIchannelsCell, colors, opts
         'brainAlpha', opts.brainAlpha, ...
         'mapViewLabels', opts.mapViewLabels, ...
         'camlight', opts.camlight, ...
-        'subtitle', opts.subtitle);
+        'subtitle', opts.subtitle, ...
+        'viewLabels', opts.viewLabels, ...
+        'axesVisible', opts.axesVisible);
 
     % -- plot channel coordinates on each view axis
     for v = 1:length(axs)
